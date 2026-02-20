@@ -1,58 +1,73 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador de Lógica Digital - Mi Portafolio</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Simulador de Lógica Digital - Jhackson</title>
+    <style>
+        body { font-family: sans-serif; background: #1a1a2e; color: white; text-align: center; padding: 50px; }
+        .panel { background: #16213e; padding: 20px; border-radius: 15px; display: inline-block; border: 2px solid #0f3460; }
+        select, button { padding: 10px; margin: 10px; border-radius: 5px; border: none; font-size: 16px; }
+        button { background: #e94560; color: white; cursor: pointer; font-weight: bold; }
+        button:hover { background: #ff2e63; }
+        .resultado { margin-top: 20px; font-size: 30px; font-weight: bold; width: 60px; height: 60px; line-height: 60px; 
+                     border-radius: 50%; display: inline-block; transition: 0.3s; }
+        .encendido { background: #4ecca3; color: #1a1a2e; box-shadow: 0 0 20px #4ecca3; }
+        .apagado { background: #444; color: #888; }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Simulador de Compuertas Lógicas</h1>
-        <p>Proyecto de Ingeniería y Fundamentos de Programación</p>
-    </header>
 
-    <main class="container">
-        <section class="circuit-box">
-            <h2>Configuración de Circuito</h2>
+    <h1>Simulador de Compuertas Lógicas</h1>
+    <div class="panel">
+        <div>
+            <label>Entrada A:</label>
+            <select id="inputA">
+                <option value="0">0</option>
+                <option value="1">1</option>
+            </select>
             
-            <div class="inputs">
-                <label for="inputA">Entrada A (0 o 1):</label>
-                <select id="inputA">
-                    <option value="0">0 (Low)</option>
-                    <option value="1">1 (High)</option>
-                </select>
+            <label>Entrada B:</label>
+            <select id="inputB">
+                <option value="0">0</option>
+                <option value="1">1</option>
+            </select>
+        </div>
 
-                <label for="inputB">Entrada B (0 o 1):</label>
-                <select id="inputB">
-                    <option value="0">0 (Low)</option>
-                    <option value="1">1 (High)</option>
-                </select>
-            </div>
+        <div>
+            <label>Compuerta:</label>
+            <select id="gate">
+                <option value="AND">AND (Y)</option>
+                <option value="OR">OR (O)</option>
+                <option value="XOR">XOR (O Exclusiva)</option>
+                <option value="NOT">NOT (Inversora de A)</option>
+            </select>
+        </div>
 
-            <div class="gate-selection">
-                <label for="gateType">Selecciona la Compuerta:</label>
-                <select id="gateType">
-                    <option value="AND">AND (Producto)</option>
-                    <option value="OR">OR (Suma)</option>
-                    <option value="XOR">XOR (O exclusiva)</option>
-                    <option value="NOT">NOT (Inversa de A)</option>
-                </select>
-            </div>
+        <button onclick="simular()">SIMULAR</button>
 
-            <button id="btnCalcular">Simular Salida</button>
-        </section>
+        <div>
+            <p>Resultado:</p>
+            <div id="resultado" class="resultado apagado">0</div>
+        </div>
+    </div>
 
-        <section class="result-box">
-            <h3>Resultado de la Salida Q:</h3>
-            <div id="outputDisplay" class="led-off">0</div>
-        </section>
-    </main>
+    <script>
+        function simular() {
+            const a = document.getElementById("inputA").value;
+            const b = document.getElementById("inputB").value;
+            const gate = document.getElementById("gate").value;
+            let res;
 
-    <footer>
-        <p>Desarrollado por [JHACKSON DUVAY CARDONA CEBALLOS] | Estudiante de Ingeniería</p>
-    </footer>
+            if (gate === "AND") res = (a == "1" && b == "1") ? 1 : 0;
+            else if (gate === "OR") res = (a == "1" || b == "1") ? 1 : 0;
+            else if (gate === "XOR") res = (a !== b) ? 1 : 0;
+            else if (gate === "NOT") res = (a == "1") ? 0 : 1;
 
-    <script src="script.js"></script>
+            const div = document.getElementById("resultado");
+            div.innerText = res;
+            div.className = "resultado " + (res == 1 ? "encendido" : "apagado");
+        }
+    </script>
 </body>
-</html>
+</html>            
