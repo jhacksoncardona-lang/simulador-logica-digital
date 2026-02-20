@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Lógica Digital - Mi Portafolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Simulador de Compuertas Lógicas</h1>
+        <p>Proyecto de Ingeniería y Fundamentos de Programación</p>
+    </header>
+
+    <main class="container">
+        <section class="circuit-box">
+            <h2>Configuración de Circuito</h2>
+            
+            <div class="inputs">
+                <label for="inputA">Entrada A (0 o 1):</label>
+                <select id="inputA">
+                    <option value="0">0 (Low)</option>
+                    <option value="1">1 (High)</option>
+                </select>
+
+                <label for="inputB">Entrada B (0 o 1):</label>
+                <select id="inputB">
+                    <option value="0">0 (Low)</option>
+                    <option value="1">1 (High)</option>
+                </select>
+            </div>
+
+            <div class="gate-selection">
+                <label for="gateType">Selecciona la Compuerta:</label>
+                <select id="gateType">
+                    <option value="AND">AND (Producto)</option>
+                    <option value="OR">OR (Suma)</option>
+                    <option value="XOR">XOR (O exclusiva)</option>
+                    <option value="NOT">NOT (Inversa de A)</option>
+                </select>
+            </div>
+
+            <button id="btnCalcular">Simular Salida</button>
+        </section>
+
+        <section class="result-box">
+            <h3>Resultado de la Salida Q:</h3>
+            <div id="outputDisplay" class="led-off">0</div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Desarrollado por [JHACKSON DUVAY CARDONA CEBALLOS] | Estudiante de Ingeniería</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
